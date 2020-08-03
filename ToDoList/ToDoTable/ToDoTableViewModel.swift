@@ -49,13 +49,16 @@ class ToDoTableViewModel {
     func routeToCreateToDoList() {
         router.routeToCreateToDoList(model: model)
     }
+    
+    func deleteToDoList(index: Int) {
+        useCase.deleteToDoList(index: index, model: model) { [weak self] model in
+            self?.completionHandler(model: model)
+        }
+    }
 }
 
 extension ToDoTableViewModel: CreateToDoListDelegate {
     func didCreateToDoListSuccess(model: [ToDoData]) {
-        // update model
-        self.model = model
-        // update UI
-        self.delegate?.updateTableView()
+        self.completionHandler(model: model)
     }
 }

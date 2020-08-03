@@ -34,5 +34,14 @@ class ShowDataUseCase {
         
         repository.updateToDoList(model: newModel, completionHandler: completionHandler)
     }
+    
+    // delete item list แล้วส่งข้อมูลหลังจากที่ลบแล้วไป update ใน userdefault
+    func deleteToDoList(index: Int, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
+        
+        var newModel = model
+        newModel.remove(at: index)
+        
+        repository.updateToDoList(model: newModel, completionHandler: completionHandler)
+    }
 
 }

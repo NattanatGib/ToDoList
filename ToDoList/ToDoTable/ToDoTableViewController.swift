@@ -33,7 +33,6 @@ class ToDoTableViewController: UIViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.router.routeToShowDetail(model: viewModel.getData()[indexPath.row])
     }
-    
 }
 
 // แสดงผลในตาราง
@@ -56,6 +55,40 @@ extension ToDoTableViewController: UITableViewDataSource, UITableViewDelegate {
         cell.isCheck = data.done
         
         return cell
+    }
+    
+    // swipe to delete and edit ToDoList
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal, title: "Del") { (action, view, completion) in
+            // Perform your action here
+            completion(true)
+            self.callAlert(index: indexPath.row)
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
+            // Perform your action here
+            completion(true)
+        }
+        
+        deleteAction.image = UIImage(systemName: "trash")
+        deleteAction.backgroundColor = UIColor.red
+        editAction.image = UIImage(systemName: "pencil")
+        editAction.backgroundColor = UIColor.gray
+        return UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+    }
+    
+    func callAlert(index: Int) {
+        let alertController = UIAlertController(title: "Are you sure",
+                                                message: "You want to delete list?",
+                                                preferredStyle: UIAlertController.Style.alert)
+        alertController.addAction(UIAlertAction(title: "Yes",
+                                                style: UIAlertAction.Style.default,
+                                                handler: { _ in self.viewModel.deleteToDoList(index: index)}))
+        alertController.addAction(UIAlertAction(title: "No",
+                                                style: UIAlertAction.Style.default,
+                                                handler: nil))
+        
+        self.present(alertController, animated: true)
     }
 }
 
