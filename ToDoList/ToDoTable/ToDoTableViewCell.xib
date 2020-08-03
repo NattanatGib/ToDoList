@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="ToDoTableViewCell" customModule="ToDoList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6K-nx-pe0">
+                    <rect key="frame" x="84" y="23" width="293" height="23"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcs-4S-JXp">
+                    <rect key="frame" x="84" y="57" width="293" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1I-5N-Xqy">
+                    <rect key="frame" x="24" y="28.5" width="44" height="43"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="afM-Et-gcw"/>
+                        <constraint firstAttribute="height" constant="44" id="eAH-Ai-6fC"/>
+                    </constraints>
+                    <color key="tintColor" red="0.93305837560000005" green="0.80192332020000001" blue="0.76860936430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" backgroundImage="checkmark.circle" catalog="system"/>
+                    <connections>
+                        <action selector="checkAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="WF9-d4-5Gr"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="b1I-5N-Xqy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Bh7-Dt-mnL"/>
+                <constraint firstItem="dcs-4S-JXp" firstAttribute="top" secondItem="i6K-nx-pe0" secondAttribute="bottom" constant="11" id="VQx-dH-fyN"/>
+                <constraint firstAttribute="trailing" secondItem="i6K-nx-pe0" secondAttribute="trailing" constant="37" id="YF8-bn-q2K"/>
+                <constraint firstAttribute="trailing" secondItem="dcs-4S-JXp" secondAttribute="trailing" constant="37" id="ZES-EY-j1j"/>
+                <constraint firstItem="i6K-nx-pe0" firstAttribute="leading" secondItem="b1I-5N-Xqy" secondAttribute="trailing" constant="16" id="bb7-5E-4M9"/>
+                <constraint firstItem="b1I-5N-Xqy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="doI-Xg-x1g"/>
+                <constraint firstAttribute="bottom" secondItem="dcs-4S-JXp" secondAttribute="bottom" constant="22" id="iaU-id-USx"/>
+                <constraint firstItem="dcs-4S-JXp" firstAttribute="leading" secondItem="i6K-nx-pe0" secondAttribute="leading" id="x3Y-CL-7mh"/>
+                <constraint firstItem="i6K-nx-pe0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="23" id="zYB-Re-PJB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="checkButton" destination="b1I-5N-Xqy" id="bo3-ev-6wc"/>
+                <outlet property="descriptionLabel" destination="dcs-4S-JXp" id="hx2-aN-JTi"/>
+                <outlet property="titleLabel" destination="i6K-nx-pe0" id="vsA-AM-ic7"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkmark.circle" catalog="system" width="64" height="60"/>
+    </resources>
+</document>
