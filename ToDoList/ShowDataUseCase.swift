@@ -17,7 +17,7 @@ class ShowDataUseCase {
         repository.getDataFromUserDefaults(completionHandler: completionHandler)
     }
     
-    // ส่งข้อมูลที่ update แล้วไปเก็บใน UserDefault
+    // send the data that already updated to store in UserDefault
     func updateToDoStatus(index: Int, isDone: Bool, model: [ToDoData], checkListCallBack: @escaping (([ToDoData]) -> Void)) {
         // update to do status
         var newModel = model
@@ -26,7 +26,7 @@ class ShowDataUseCase {
         repository.updateToDoList(model: newModel, completionHandler: checkListCallBack)
     }
     
-    // add ข้อมูลใหม่ เข้่าไปในข้อมูลทั้งหมด แล้วส่งไป update ใน userdefault
+    // add new ToDoList item to old ToDoList and then send to store in UserDefault
     func updateCreateToDoList(newToDoList: ToDoData, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
         
         var newModel = model
@@ -35,7 +35,7 @@ class ShowDataUseCase {
         repository.updateToDoList(model: newModel, completionHandler: completionHandler)
     }
     
-    // delete item list แล้วส่งข้อมูลหลังจากที่ลบแล้วไป update ใน userdefault
+    // delete item list and then send data to store in UserDefault
     func deleteToDoList(index: Int, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
         
         var newModel = model
@@ -43,5 +43,13 @@ class ShowDataUseCase {
         
         repository.updateToDoList(model: newModel, completionHandler: completionHandler)
     }
-
+    
+    func updateToDoList(index: Int, dataUpdate: ToDoData, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
+        
+        var newModel = model
+        newModel[index] = dataUpdate
+        
+        repository.updateToDoList(model: newModel, completionHandler: completionHandler)
+    }
+    
 }

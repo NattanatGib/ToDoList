@@ -43,7 +43,7 @@ class ToDoTableRepository {
         }
     }
     
-    // รับข้อมูล toDoList ทั้งก้อน มาอัพเดทเช้า userdefaults
+    // receive all ToDoList data and update userdefaults
     func updateToDoList(model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
         // update userdefault with model
         let encodeData = try? JSONEncoder().encode(model)

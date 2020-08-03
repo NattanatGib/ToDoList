@@ -46,8 +46,8 @@ class ToDoTableViewModel {
         self.delegate?.updateTableView()
     }
     
-    func routeToCreateToDoList() {
-        router.routeToCreateToDoList(model: model)
+    func routeToCreateToDoList(index: Int) {
+        router.routeToCreateToDoList(model: model, index: index)
     }
     
     func deleteToDoList(index: Int) {

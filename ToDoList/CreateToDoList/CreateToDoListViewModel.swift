@@ -19,12 +19,28 @@ class CreateToDoListViewModel {
     var router: CreateToDoListRouter = . init()
     
     var model: [ToDoData] = []
+    var updateIndex: Int?
+    var defaultEditData: ToDoData?
     
     func createToDoList(newToDoList: ToDoData) {
         useCase.updateCreateToDoList(newToDoList: newToDoList, model: model) { [weak self] model in
-            self?.delegate?.didCreateToDoListSuccess(model: model)
-            self?.router.closeCreateToDoList()
+            self?.completionHandler(model: model)
+//            self?.delegate?.didCreateToDoListSuccess(model: model)
+//            self?.router.closeCreateToDoList()
         }
+    }
+    
+    func updateToDoList(index: Int, dataUpdate: ToDoData) {
+        useCase.updateToDoList(index: index, dataUpdate: dataUpdate, model: model) { [weak self] model in
+            self?.completionHandler(model: model)
+//            self?.delegate?.didCreateToDoListSuccess(model: model)
+//            self?.router.closeCreateToDoList()
+        }
+    }
+    
+    func completionHandler(model: [ToDoData]) {
+        self.delegate?.didCreateToDoListSuccess(model: model)
+        self.router.closeCreateToDoList()
     }
     
 }

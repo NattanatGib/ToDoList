@@ -26,7 +26,7 @@ class ToDoTableViewController: UIViewController {
     
     // กด add แล้วจะ route ให้แสดงหน้า create form
     @IBAction func addButton(_ sender: Any) {
-        viewModel.routeToCreateToDoList()
+        viewModel.routeToCreateToDoList(index: -1)
     }
     
     // MARK: - Navigation
@@ -68,6 +68,7 @@ extension ToDoTableViewController: UITableViewDataSource, UITableViewDelegate {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
             // Perform your action here
             completion(true)
+            self.viewModel.routeToCreateToDoList(index: indexPath.row)
         }
         
         deleteAction.image = UIImage(systemName: "trash")
@@ -78,8 +79,8 @@ extension ToDoTableViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func callAlert(index: Int) {
-        let alertController = UIAlertController(title: "Are you sure",
-                                                message: "You want to delete list?",
+        let alertController = UIAlertController(title: "Confirm Delete",
+                                                message: "Are you sure you want to delete list?",
                                                 preferredStyle: UIAlertController.Style.alert)
         alertController.addAction(UIAlertAction(title: "Yes",
                                                 style: UIAlertAction.Style.default,
