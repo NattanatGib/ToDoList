@@ -26,7 +26,7 @@ class ToDoTableViewController: UIViewController {
     
     // กด add แล้วจะ route ให้แสดงหน้า create form
     @IBAction func addButton(_ sender: Any) {
-        viewModel.routeToCreateToDoList(index: -1)
+        viewModel.routeToCreateToDoList()
     }
     
     // MARK: - Navigation
@@ -60,15 +60,23 @@ extension ToDoTableViewController: UITableViewDataSource, UITableViewDelegate {
     // swipe to delete and edit ToDoList
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal, title: "Del") { (action, view, completion) in
-            // Perform your action here
-            completion(true)
             self.callAlert(index: indexPath.row)
+            completion(true)
         }
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, completion) in
-            // Perform your action here
+            
+            // โจทย์ p'ice
+            guard let cell = tableView.cellForRow(at: indexPath) as? ToDoTableViewCell else {
+                return
+            }
+            self.viewModel.routeToEditToDoList(index: indexPath.row) { [weak self] updateData in
+                tableView.beginUpdates()
+                cell.titleLabel.text = "\(updateData.title)"
+                cell.descriptionLabel.text = "\(updateData.description)"
+                tableView.endUpdates()
+            }
             completion(true)
-            self.viewModel.routeToCreateToDoList(index: indexPath.row)
         }
         
         deleteAction.image = UIImage(systemName: "trash")
@@ -103,6 +111,9 @@ extension ToDoTableViewController: TableViewCellDelegate {
 // หลังจาก update ข้อมูลเรียบร้อยแล้ว ให้ reloadData
 extension ToDoTableViewController: ToDoTableViewModelDelegate {
     func updateTableView() {
-        toDoTable.reloadData()
+        toDoTable.beginUpdates()
+        toDoTable.deleteRows(at: [.init(row: 0, section: 0)], with: .automatic)
+        toDoTable.endUpdates()
+       // toDoTable.reloadData()
     }
 }

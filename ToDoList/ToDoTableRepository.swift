@@ -50,5 +50,13 @@ class ToDoTableRepository {
         UserDefaults.standard.set( encodeData , forKey: key)
         completionHandler(model)
     }
+    
+    func editToDoList(model: [ToDoData], dataUpdate: ToDoData, completionHandler: @escaping ((ToDoData) -> Void)) {
+        // update userdefault with model
+        let encodeData = try? JSONEncoder().encode(model)
+        UserDefaults.standard.set( encodeData , forKey: key)
+        
+        completionHandler(dataUpdate)
+    }
 
 }

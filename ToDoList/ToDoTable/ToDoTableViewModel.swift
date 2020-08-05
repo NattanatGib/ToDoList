@@ -46,8 +46,21 @@ class ToDoTableViewModel {
         self.delegate?.updateTableView()
     }
     
-    func routeToCreateToDoList(index: Int) {
-        router.routeToCreateToDoList(model: model, index: index)
+    func routeToCreateToDoList() {
+        router.routeToCreateToDoList(model: model) { [weak self] model in
+               self?.completionHandler(model: model)
+           }
+    }
+    
+    func routeToEditToDoList(index: Int, completionHandler: @escaping ((ToDoData) -> Void)) {
+//        router.routeToEditToDoList(model: model, index: index, completionHandler: completionHandler) { [weak self] updateData in
+//            self?.model[index] = updateData
+//        }
+        
+        router.routeToEditToDoList(model: model, index: index) { [weak self] updateData in
+            self?.model[index] = updateData
+            completionHandler(updateData)
+        }
     }
     
     func deleteToDoList(index: Int) {

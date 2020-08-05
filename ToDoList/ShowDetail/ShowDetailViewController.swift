@@ -18,10 +18,10 @@ class ShowDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDataOnScence()
+        setDataOnScene()
     }
     
-    func setDataOnScence() {
+    func setDataOnScene() {
         guard let data = viewModel.toDoListDetail else {
             return
         }

@@ -10,6 +10,7 @@ import UIKit
 
 protocol CreateToDoListDelegate: class {
     func didCreateToDoListSuccess(model: [ToDoData])
+    //    func didUpdateToDoListSuccess(model: ToDoData)
 }
 
 class CreateToDoListViewModel {
@@ -22,20 +23,21 @@ class CreateToDoListViewModel {
     var updateIndex: Int?
     var defaultEditData: ToDoData?
     
+    var updateSuccessCallback: ((ToDoData) -> Void)! //callback2 ที่ hold ballback1 ไว้
+    
+//    var updateDataInVM: ((ToDoData) -> Void)!
+    
     func createToDoList(newToDoList: ToDoData) {
         useCase.updateCreateToDoList(newToDoList: newToDoList, model: model) { [weak self] model in
             self?.completionHandler(model: model)
-//            self?.delegate?.didCreateToDoListSuccess(model: model)
-//            self?.router.closeCreateToDoList()
         }
     }
-    
+
     func updateToDoList(index: Int, dataUpdate: ToDoData) {
         useCase.updateToDoList(index: index, dataUpdate: dataUpdate, model: model) { [weak self] model in
-            self?.completionHandler(model: model)
-//            self?.delegate?.didCreateToDoListSuccess(model: model)
-//            self?.router.closeCreateToDoList()
-        }
+            self?.router.closeCreateToDoList()
+            self?.updateSuccessCallback(model)
+        } // callback3 ที่ hold callback2
     }
     
     func completionHandler(model: [ToDoData]) {

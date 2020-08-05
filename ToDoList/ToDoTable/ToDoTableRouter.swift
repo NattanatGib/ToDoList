@@ -12,22 +12,30 @@ class ToDoTableRouter {
     
     weak var viewController: ToDoTableViewController?
     
-    func routeToCreateToDoList(model: [ToDoData], index: Int) {
+    func routeToCreateToDoList(model: [ToDoData], completionHandler: (([ToDoData]) -> Void)) {
         let storyboard: UIStoryboard = .init(name: "Main", bundle: nil)
         let createVC: CreateToDoListViewController = storyboard.instantiateViewController(identifier: "CreateToDoListStoryboardID")
         createVC.modalPresentationStyle = .overFullScreen
-        
         // viewController?.viewModel conform protocol delegate ของ CreateToDoListViewController.viewModel
         createVC.viewModel.delegate = viewController?.viewModel
         
         // ส่ง ข้อมูล ToDoData ทั้งหมด ไปที่ model ในหน้า create
         createVC.viewModel.model = model
+        viewController?.navigationController?.present(createVC, animated: true)
+    }
+    
+    func routeToEditToDoList(model: [ToDoData], index: Int, completionHandler: @escaping ((ToDoData) -> Void)) {
+        let storyboard: UIStoryboard = .init(name: "Main", bundle: nil)
+        let createVC: CreateToDoListViewController = storyboard.instantiateViewController(identifier: "CreateToDoListStoryboardID")
+        createVC.modalPresentationStyle = .overFullScreen
+        
+        createVC.viewModel.model = model
+        createVC.viewModel.updateSuccessCallback = completionHandler // set callback ใน createVM เป็น callback2ที่hold callback1
+//        createVC.viewModel.updateDataInVM = updateDataInVM
         
         // ถ้ากด edit มา ให้เก็บข้อมูลไว้
-        if index >= 0 {
-            createVC.viewModel.updateIndex = index
-            createVC.viewModel.defaultEditData = model[index]
-        }
+        createVC.viewModel.updateIndex = index
+        createVC.viewModel.defaultEditData = model[index]
         viewController?.navigationController?.present(createVC, animated: true)
     }
     

@@ -26,6 +26,7 @@
 		AEBEFE6E24D4303D00E860BC /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEFE6D24D4303D00E860BC /* UIButton.swift */; };
 		AEBEFE7124D5B5DB00E860BC /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEFE7024D5B5DB00E860BC /* ShowDetailViewController.swift */; };
 		AEBEFE7324D5B65700E860BC /* ShowDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEFE7224D5B65700E860BC /* ShowDetailViewModel.swift */; };
+		AEBEFE7C24D7F9A800E860BC /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBEFE7B24D7F9A800E860BC /* UITextViewPlaceholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		AEBEFE6D24D4303D00E860BC /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		AEBEFE7024D5B5DB00E860BC /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		AEBEFE7224D5B65700E860BC /* ShowDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewModel.swift; sourceTree = "<group>"; };
+		AEBEFE7B24D7F9A800E860BC /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			children = (
 				AE504FE824D4187700B051CA /* UITextView.swift */,
 				AEBEFE6D24D4303D00E860BC /* UIButton.swift */,
+				AEBEFE7B24D7F9A800E860BC /* UITextViewPlaceholder.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				AEA13A5524D2B9A50030CD41 /* AppDelegate.swift in Sources */,
 				AE516FED24D2BDF200EDF71D /* ToDoTableViewModel.swift in Sources */,
 				AE504FE424D409CC00B051CA /* CreateToDoListViewController.swift in Sources */,
+				AEBEFE7C24D7F9A800E860BC /* UITextViewPlaceholder.swift in Sources */,
 				AE516FEB24D2BC8F00EDF71D /* ToDoTableViewController.swift in Sources */,
 				AE504FDD24D2CFC100B051CA /* ToDoTableViewCell.swift in Sources */,
 				AE504FE624D4164700B051CA /* CreateToDoListRouter.swift in Sources */,

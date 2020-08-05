@@ -44,12 +44,22 @@ class ShowDataUseCase {
         repository.updateToDoList(model: newModel, completionHandler: completionHandler)
     }
     
-    func updateToDoList(index: Int, dataUpdate: ToDoData, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
+//    func updateToDoList(index: Int, dataUpdate: ToDoData, model: [ToDoData], completionHandler: @escaping (([ToDoData]) -> Void)) {
+//
+//        var newModel = model
+//        newModel[index] = dataUpdate
+//
+//        repository.updateToDoList(model: newModel, completionHandler: completionHandler)
+//    }
+    func updateToDoList(index: Int, dataUpdate: ToDoData, model: [ToDoData], completionHandler: @escaping ((ToDoData) -> Void)) {
         
         var newModel = model
         newModel[index] = dataUpdate
         
-        repository.updateToDoList(model: newModel, completionHandler: completionHandler)
+        repository.editToDoList(model: newModel, dataUpdate: dataUpdate, completionHandler: completionHandler
+        )
+        
+        
     }
     
 }
